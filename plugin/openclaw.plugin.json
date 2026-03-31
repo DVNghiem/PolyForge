@@ -86,6 +86,57 @@
         },
         "default": [],
         "description": "OpenCode agent IDs that represent team members Atlas can delegate to"
+      },
+      "workflow_phase_enforcement": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "enabled": { "type": "boolean", "default": true },
+          "default_approval_level": { "type": "string", "enum": ["low", "medium", "high"], "default": "medium" },
+          "per_workflow_overrides": {
+            "type": "object",
+            "additionalProperties": { "type": "string", "enum": ["low", "medium", "high"] }
+          }
+        }
+      },
+      "acp_spawning": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "enabled": { "type": "boolean", "default": true },
+          "allow_detached_by_default": { "type": "boolean", "default": false },
+          "max_concurrent_detached": { "type": "integer", "default": 5 },
+          "detached_timeout_ms": { "type": "integer", "default": 3600000 }
+        }
+      },
+      "intelligent_features": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "adaptive_learning": {
+            "type": "object",
+            "properties": {
+              "enabled": { "type": "boolean", "default": true },
+              "min_samples_for_auto_approve": { "type": "integer", "default": 5 },
+              "auto_approve_threshold": { "type": "number", "default": 0.9 }
+            }
+          },
+          "proactive_suggestions": {
+            "type": "object",
+            "properties": {
+              "enabled": { "type": "boolean", "default": true },
+              "suggestion_interval_ms": { "type": "integer", "default": 30000 }
+            }
+          },
+          "quality_gates": {
+            "type": "object",
+            "properties": {
+              "enabled": { "type": "boolean", "default": true },
+              "enforcement_level": { "type": "string", "enum": ["strict", "moderate", "lenient"], "default": "moderate" },
+              "default_threshold": { "type": "number", "default": 0.75 }
+            }
+          }
+        }
       }
     }
   },
