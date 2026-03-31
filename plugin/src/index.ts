@@ -26,6 +26,7 @@ import { registerIntakeTool } from './tools/intake.js';
 import { registerWebSearchTool } from './tools/web-search.js';
 import { registerCheckpointTool } from './tools/checkpoint.js';
 import { registerPhaseTransitionTool } from './tools/phase-transition.js';
+import { registerSpawnSubagentTool } from './tools/spawn-subagent.js';
 import { registerTodoCreateTool, registerTodoListTool, registerTodoUpdateTool } from './tools/todo/index.js';
 
 // Commands
@@ -104,6 +105,7 @@ export default function register(api: PfPluginApi): void {
   safeRegister(api, 'pf_todo_list', 'tool', () => registerTodoListTool(api));
   safeRegister(api, 'pf_todo_update', 'tool', () => registerTodoUpdateTool(api));
   safeRegister(api, 'pf_phase_transition', 'tool', () => registerPhaseTransitionTool(api));
+  safeRegister(api, 'pf_spawn_subagent', 'tool', () => registerSpawnSubagentTool(api));
 
   // Register commands
   safeRegister(api, 'pf', 'command', () => registerPfCommands(api));
