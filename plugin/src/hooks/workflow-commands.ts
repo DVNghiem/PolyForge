@@ -5,6 +5,8 @@ import { readPersonaPromptSync } from '../agents/persona-prompts.js';
 import { setActivePersonaId } from '../utils/persona-state.js';
 import { resolvePluginPath } from '../utils/paths.js';
 import { readFileSync } from 'fs';
+import { setActiveWorkflow } from './context-injector.js';
+import { WorkflowName } from '../lib/types/workflow-types.js';
 
 const WORKFLOW_COMMANDS = {
   brainstorm: {
@@ -113,6 +115,9 @@ export function registerWorkflowCommands(api: PfPluginApi): void {
 
       const sessionKey = ctx.sessionKey ?? 'default';
       api.logger.info(`${LOG_PREFIX} workflow-commands: detected workflow command="${commandName}" topic="${topic ?? ''}" → ${workflowDef.personaId}`);
+
+      // Track active workflow for phase context injection
+      setActiveWorkflow(sessionKey, commandName.toLowerCase() as WorkflowName);
 
       // Load workflow content
       const workflowContent = loadWorkflowContent(workflowDef.workflowFile);
