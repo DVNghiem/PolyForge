@@ -1,5 +1,5 @@
 {
-  "name": "@dvnghiem/polyforge",
+  "name": "@dv.nghiem/polyforge",
   "version": "0.1.0",
   "description": "PolyForge plugin — backend engineering command center for polyglot developers on OpenClaw",
   "type": "module",
