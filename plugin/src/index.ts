@@ -36,6 +36,7 @@ import { registerTodoCommands } from './commands/todo-commands.js';
 
 // Services
 import { registerAutorunService } from './services/autorun-loop.js';
+import { registerWorkflowEngine } from './services/workflow-engine.js';
 
 // CLI
 import { registerPfSetupCli } from './cli/pf-setup.js';
@@ -114,6 +115,7 @@ export default function register(api: PfPluginApi): void {
 
   // Register services
   safeRegister(api, 'autorun', 'service', () => registerAutorunService(api));
+  safeRegister(api, 'workflow-engine', 'service', () => registerWorkflowEngine(api));
 
   // Register CLI
   api.registerCli(
