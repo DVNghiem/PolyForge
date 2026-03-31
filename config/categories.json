@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "categories": {
+    "quick": {
+      "description": "Small, well-defined tasks",
+      "defaultAgent": "pf_sprint",
+      "examples": ["Add a field to a struct", "Fix a typo", "Rename a function"]
+    },
+    "deep": {
+      "description": "Complex implementation",
+      "defaultAgent": "pf_forge",
+      "examples": ["Refactor auth module", "Implement rate limiter", "Debug async deadlock"]
+    },
+    "apex": {
+      "description": "Architecture decisions",
+      "defaultAgent": "pf_architect",
+      "examples": ["Design a new service boundary", "Evaluate caching strategy"]
+    },
+    "research": {
+      "description": "Technology investigation",
+      "defaultAgent": "pf_researcher",
+      "examples": ["Evaluate Axum vs Actix", "Compare PostgreSQL vs CockroachDB"]
+    },
+    "rust": {
+      "description": "Rust-specific work",
+      "defaultAgent": "pf_forge",
+      "examples": ["Fix lifetime issue", "Optimize hot path", "Async trait impl"]
+    },
+    "python": {
+      "description": "Python-specific work",
+      "defaultAgent": "pf_forge",
+      "examples": ["Add FastAPI endpoint with validation", "Write async background task"]
+    },
+    "typescript": {
+      "description": "TypeScript backend work",
+      "defaultAgent": "pf_sprint",
+      "examples": ["Add Fastify route", "Fix type error", "Write integration test"]
+    },
+    "review": {
+      "description": "Code or plan critique",
+      "defaultAgent": "pf_critic",
+      "examples": ["Review PR diff", "Critique a plan", "Identify security issues"]
+    },
+    "writing": {
+      "description": "Docs, reports, README",
+      "defaultAgent": "pf_sprint",
+      "examples": ["Write a tech brief", "Update API docs", "Write changelog entry"]
+    },
+    "unspecified-low": {
+      "description": "Unknown low complexity",
+      "defaultAgent": "pf_sprint",
+      "examples": ["Default fallback for simple tasks"]
+    },
+    "unspecified-high": {
+      "description": "Unknown high complexity",
+      "defaultAgent": "pf_forge",
+      "examples": ["Default fallback for complex tasks"]
+    }
+  }
+}

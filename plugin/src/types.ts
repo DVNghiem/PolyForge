@@ -1,0 +1,147 @@
+// Re-export constants from constants.ts for backward compatibility
+export {
+  PLUGIN_ID, TOOL_PREFIX, ABSOLUTE_MAX_AUTO_ITERATIONS, LOG_PREFIX, READ_ONLY_DENY,
+} from './constants.js';
+
+// PluginConfig interface
+export interface PluginConfig {
+  max_auto_iterations: number;
+  todo_enforcer_enabled: boolean;
+  todo_enforcer_cooldown_ms: number;
+  todo_enforcer_max_failures: number;
+  comment_checker_enabled: boolean;
+  checkpoint_dir: string;
+  model_routing?: Partial<Record<string, { model: string; alternatives?: string[] }>>;
+  preferred_language: 'python' | 'rust' | 'typescript' | 'mixed';
+  research_depth: 'shallow' | 'standard' | 'deep';
+  team_agent_ids: string[];
+}
+
+// AutorunLoopState interface
+export interface AutorunLoopState {
+  active: boolean;
+  iteration: number;
+  maxIterations: number;
+  taskFile: string;
+  startedAt: string;
+}
+
+// CheckpointData interface
+export interface CheckpointData {
+  type: 'session-checkpoint';
+  session_id: string;
+  task: string;
+  step: string;
+  changed_files: string[];
+  verification: {
+    diagnostics: 'pass' | 'fail' | 'not-run';
+    tests: 'pass' | 'fail' | 'not-run';
+    build: 'pass' | 'fail' | 'not-run';
+  };
+  next_action: string;
+  timestamp: string;
+}
+
+// CommentViolation interface
+export interface CommentViolation {
+  file: string;
+  line: number;
+  content: string;
+  reason: string;
+}
+
+// Hook/Tool/Command/Service registration types
+export interface HookMeta {
+  name: string;
+  description?: string;
+}
+
+export interface ToolResult {
+  content: Array<{ type: string; text: string }>;
+}
+
+export interface ToolRegistration<TParams = unknown> {
+  name: string;
+  description: string;
+  parameters: unknown;
+  execute: (toolCallId: string, params: TParams, options?: unknown, callback?: unknown) => Promise<ToolResult>;
+  optional?: boolean;
+}
+
+export interface CommandRegistration<TCtx = { args?: string }> {
+  name: string;
+  description: string;
+  acceptsArgs?: boolean;
+  handler: (ctx: TCtx) => { text: string } | Promise<{ text: string }>;
+}
+
+export interface ServiceContext {
+  config: unknown;
+  workspaceDir?: string;
+  stateDir: string;
+  logger: {
+    info: (message: string) => void;
+    warn: (message: string) => void;
+    error: (message: string) => void;
+    debug?: (message: string) => void;
+  };
+}
+
+export interface ServiceRegistration {
+  id: string;
+  start: (ctx: ServiceContext) => void | Promise<void>;
+  stop?: (ctx: ServiceContext) => void | Promise<void>;
+}
+
+// PolyForge Plugin API interface
+export interface PfPluginApi {
+  pluginConfig?: PluginConfig;
+  config: PluginConfig;
+  workspaceDir?: string;
+  logger: {
+    info: (...args: unknown[]) => void;
+    warn: (...args: unknown[]) => void;
+    error: (...args: unknown[]) => void;
+    debug?: (...args: unknown[]) => void;
+  };
+  runtime: {
+    system: {
+      enqueueSystemEvent: (text: string, options: { sessionKey: string; contextKey?: string | null }) => void;
+    };
+  };
+  registerHook: <TEvent>(event: string, handler: (event: TEvent) => TEvent | void | undefined, meta?: HookMeta) => void;
+  registerTool: <TParams>(config: ToolRegistration<TParams>) => void;
+  registerCommand: <TCtx = { args?: string }>(config: CommandRegistration<TCtx>) => void;
+  registerService: (config: ServiceRegistration) => void;
+  registerGatewayMethod: (name: string, handler: () => unknown) => void;
+  registerCli: (registrar: (ctx: { program: unknown; config: unknown; workspaceDir?: string; logger: PfPluginApi['logger'] }) => void | Promise<void>, opts?: { commands?: string[] }) => void;
+  on: <TEvent = unknown, TResult = unknown>(
+    hookName: string,
+    handler: (event: TEvent, ctx: TypedHookContext) => TResult | Promise<TResult> | void | undefined | Promise<TResult | undefined>,
+    opts?: { priority?: number }
+  ) => void;
+}
+
+// Typed hook context provided by OpenClaw hookRunner to api.on() handlers
+export interface TypedHookContext {
+  agentId?: string;
+  sessionKey?: string;
+  sessionId?: string;
+  workspaceDir?: string;
+  messageProvider?: unknown;
+}
+
+// Result shape for before_prompt_build hooks
+export interface BeforePromptBuildResult {
+  systemPrompt?: string;
+  prependContext?: string;
+}
+
+// Event shape for before_prompt_build hooks
+export interface BeforePromptBuildEvent {
+  prompt?: string;
+  messages?: unknown[];
+  systemPrompt?: string;
+  userMessage?: string;
+  latestMessage?: string;
+}
