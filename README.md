@@ -15,7 +15,13 @@
 - **Autorun Loop** — Self-correcting execution with configurable iteration limits
 - **Todo Tracking** — Persistent todo management across sessions
 
-## Installation
+## OpenClaw plugin installation
+```bash
+openclaw plugins install @dv.nghiem/polyforge
+openclaw pf-setup
+```
+
+## Develop Installation
 
 ```bash
 # Clone the repository
