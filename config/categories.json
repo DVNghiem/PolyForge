@@ -36,6 +36,26 @@
       "defaultAgent": "pf_sprint",
       "examples": ["Add Fastify route", "Fix type error", "Write integration test"]
     },
+    "go": {
+      "description": "Go-specific work",
+      "defaultAgent": "pf_forge",
+      "examples": ["Add HTTP handler with gin", "Write goroutine pool", "Fix race condition"]
+    },
+    "java": {
+      "description": "Java-specific work",
+      "defaultAgent": "pf_forge",
+      "examples": ["Add Spring Boot endpoint", "Write JPA repository", "Fix thread-safety issue"]
+    },
+    "cpp": {
+      "description": "C/C++ systems work",
+      "defaultAgent": "pf_forge",
+      "examples": ["Fix memory leak", "Optimize hot path", "Write CMakeLists.txt"]
+    },
+    "ruby": {
+      "description": "Ruby backend work",
+      "defaultAgent": "pf_sprint",
+      "examples": ["Add Rails controller action", "Write RSpec test", "Define ActiveRecord scope"]
+    },
     "review": {
       "description": "Code or plan critique",
       "defaultAgent": "pf_critic",

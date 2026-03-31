@@ -13,6 +13,10 @@ const CATEGORY_AGENT_MAP: Record<Category, string> = {
   'rust': 'pf_forge',
   'python': 'pf_forge',
   'typescript': 'pf_sprint',
+  'go': 'pf_forge',
+  'java': 'pf_forge',
+  'cpp': 'pf_forge',
+  'ruby': 'pf_sprint',
   'review': 'pf_critic',
   'writing': 'pf_sprint',
   'unspecified-low': 'pf_sprint',
@@ -21,7 +25,7 @@ const CATEGORY_AGENT_MAP: Record<Category, string> = {
 
 /** Categories that involve writing code and should route through pf_spawn_acp */
 const CODING_CATEGORIES = new Set<Category>([
-  'quick', 'deep', 'rust', 'python', 'typescript', 'unspecified-low', 'unspecified-high',
+  'quick', 'deep', 'rust', 'python', 'typescript', 'go', 'java', 'cpp', 'ruby', 'unspecified-low', 'unspecified-high',
 ]);
 
 const DelegateParams = Type.Object({

@@ -1,6 +1,6 @@
 ---
 name: polyforge
-description: Backend engineering command center for polyglot developers — 8 specialized agents, 11 task categories, language-aware routing, research-first workflow, anti-hallucination guardrails, and automated task completion loops for Python, Rust, and TypeScript projects on OpenClaw.
+description: Backend engineering command center for polyglot developers — 8 specialized agents, 15 task categories, language-aware routing, research-first workflow, anti-hallucination guardrails, and automated task completion loops for Python, Rust, TypeScript, Go, Java, C/C++, and Ruby projects on OpenClaw.
 ---
 
 # PolyForge
@@ -9,11 +9,11 @@ description: Backend engineering command center for polyglot developers — 8 sp
 
 ## Overview
 
-PolyForge provides a 3-layer agent architecture and opinionated workflow for backend engineers working across Python, Rust, and TypeScript. Every task flows through triage → planning → execution → verification.
+PolyForge provides a 3-layer agent architecture and opinionated workflow for backend engineers working across Python, Rust, TypeScript, Go, Java, C/C++, and Ruby. Every task flows through triage → planning → execution → verification.
 
 - **3-Layer Architecture**: Strategy (Atlas) → Coordination (Architect, Researcher, Analyst, Critic, Explorer) → Execution (Sprint, Forge)
-- **11 Task Categories**: Intent-based routing from quick fixes to deep research to architecture decisions
-- **Language-Aware**: Auto-detects Python / Rust / TypeScript, injects relevant skills and verification rules
+- **15 Task Categories**: Intent-based routing from quick fixes to deep research to architecture decisions
+- **Language-Aware**: Auto-detects Python / Rust / TypeScript / Go / Java / C++ / Ruby, injects relevant skills and verification rules
 - **Research-First**: Evaluate technologies before building via structured Tech Briefs
 - **Anti-Hallucination Guardrails**: 8 rules injected into every prompt
 - **Autorun Loop**: Self-correcting execution with configurable iteration limits
@@ -54,7 +54,7 @@ This skill activates when:
 
 - User invokes `/triage`, `/research`, `/intake`, `/plan`, `/execute`, or `/work`
 - User asks for task routing, technology evaluation, or backend engineering help
-- User needs multi-step coding pipeline coordination across Python, Rust, or TypeScript
+- User needs multi-step coding pipeline coordination across Python, Rust, TypeScript, Go, Java, C/C++, or Ruby
 
 ## Architecture
 
@@ -78,8 +78,8 @@ This skill activates when:
 
 | Agent      | Role                                                              | Category              |
 | ---------- | ----------------------------------------------------------------- | --------------------- |
-| **Sprint** | Quick worker — bounded features, bug fixes, docs, TypeScript work | quick, typescript, writing |
-| **Forge**  | Deep specialist — complex refactors, async debugging, Rust/Python | deep, rust, python    |
+| **Sprint** | Quick worker — bounded features, bug fixes, docs, TypeScript/Ruby work | quick, typescript, ruby, writing |
+| **Forge**  | Deep specialist — complex refactors, async debugging, Rust/Python/Go/Java/C++ | deep, rust, python, go, java, cpp |
 
 ### Category-to-Agent Routing
 
@@ -92,11 +92,15 @@ This skill activates when:
 | `rust`           | Forge         | Fix lifetime issue, optimize hot path, async trait impl|
 | `python`         | Forge         | Add FastAPI endpoint, write async background task      |
 | `typescript`     | Sprint        | Add Fastify route, fix type error, write integration test |
+| `go`             | Forge         | Add gin handler, fix goroutine leak, write table-driven test |
+| `java`           | Forge         | Add Spring Boot endpoint, write JPA repository, fix N+1 |
+| `cpp`            | Forge         | Fix memory leak, optimize hot path, write CMakeLists.txt |
+| `ruby`           | Sprint        | Add Rails action, write RSpec test, define ActiveRecord scope |
 | `review`         | Critic        | Review PR diff, critique a plan, identify security issues |
 | `writing`        | Sprint        | Write a tech brief, update API docs, write changelog   |
 | `unspecified-low`| Sprint        | Unknown low-complexity tasks                           |
 
-Coding categories (`quick`, `deep`, `rust`, `python`, `typescript`) route through `pf_spawn_acp` → `sessions_spawn` for real sub-agent sessions.
+Coding categories (`quick`, `deep`, `rust`, `python`, `typescript`, `go`, `java`, `cpp`, `ruby`) route through `pf_spawn_acp` → `sessions_spawn` for real sub-agent sessions.
 
 ## Workflows
 
@@ -166,6 +170,10 @@ Skills inject domain expertise into agent prompts. Relevant skills are loaded au
 | **rust-systems**             | Rust, cargo, tokio, lifetime, borrow      | Async patterns, error handling, zero-cost abstractions            |
 | **python-backend**           | Python, FastAPI, asyncio, pytest          | Async patterns, type system, packaging with uv/pyproject.toml     |
 | **typescript-backend**       | TypeScript, Fastify, Zod, ESM             | Strict types, Zod validation, Vitest testing patterns             |
+| **go-backend**               | Go, gin, chi, goroutine, go.mod           | Idiomatic Go, concurrency patterns, sqlc, table-driven tests      |
+| **java-backend**             | Java, Spring, JPA, Maven, Gradle          | Spring Boot, JPA/Flyway, constructor injection, Testcontainers    |
+| **cpp-systems**              | C++, cmake, memory, pointer, sanitizer    | Modern C++20, RAII, smart pointers, AddressSanitizer              |
+| **ruby-backend**             | Ruby, Rails, RSpec, Sidekiq, ActiveRecord | Thin controllers, service objects, FactoryBot, idempotent jobs    |
 | **tech-research**            | evaluate, compare, choose, benchmark      | Tech Brief methodology, health assessment, adoption signals        |
 | **code-review**              | review, PR, critique, quality             | Severity-categorized review checklist, OWASP-aligned security     |
 | **comment-checker**          | comment check, AI slop, code quality      | Anti-AI-slop guard — removes obvious comments, keeps WHY comments |
@@ -190,6 +198,10 @@ Skills inject domain expertise into agent prompts. Relevant skills are loaded au
 | **The Rusticist**   | `rust`       | rust-systems        | Lifetime-safe, tokio-async Rust with proper error handling |
 | **The Pythonista**  | `python`     | python-backend      | FastAPI endpoints with async patterns and full type coverage |
 | **The TS Worker**   | `typescript` | typescript-backend  | Strict-mode TypeScript with Zod validation and Vitest tests |
+| **The Gopher**      | `go`         | go-backend          | Idiomatic Go with goroutines, sqlc queries, and table tests |
+| **The Java Dev**    | `java`       | java-backend        | Spring Boot services with JPA, constructor injection, Testcontainers |
+| **The Systems Dev** | `cpp`        | cpp-systems         | Modern C++20 with RAII, smart pointers, and sanitizer coverage |
+| **The Rails Dev**   | `ruby`       | ruby-backend        | Thin Rails controllers, service objects, and RSpec test suite |
 | **The Maintainer**  | `quick`      | git-master          | Quick fixes with clean atomic commits                   |
 | **The Reviewer**    | `review`     | code-review, comment-checker | Deep review with AI slop detection           |
 | **The Researcher**  | `research`   | tech-research, web-search | Structured Tech Brief with health assessment       |
