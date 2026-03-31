@@ -16,6 +16,7 @@ import { registerLangDetector } from './hooks/lang-detector.js';
 import { registerSubagentTracker } from './hooks/subagent-tracker.js';
 import { registerTodoReminder } from './hooks/todo-reminder.js';
 import { registerWorkflowCommands } from './hooks/workflow-commands.js';
+import { registerApprovalGate } from './hooks/approval-gate.js';
 
 // Tools
 import { registerDelegateTool } from './tools/delegate.js';
@@ -90,6 +91,7 @@ export default function register(api: PfPluginApi): void {
   safeRegister(api, 'subagent-tracker', 'hook', () => registerSubagentTracker(guarded));
   safeRegister(api, 'todo-reminder', 'hook', () => registerTodoReminder(guarded));
   safeRegister(api, 'workflow-commands', 'hook', () => registerWorkflowCommands(guarded));
+  safeRegister(api, 'approval-gate', 'hook', () => registerApprovalGate(guarded));
 
   // Register tools
   safeRegister(api, 'pf_delegate', 'tool', () => registerDelegateTool(api));
