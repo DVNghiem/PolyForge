@@ -2,7 +2,7 @@
 
 > Backend engineering command center for polyglot developers.
 
-**PolyForge** is an [OpenClaw](https://docs.openclaw.ai) CLI plugin that provides a structured, research-first, language-aware workflow for backend engineers working in **Python**, **Rust**, and **TypeScript**.
+**PolyForge** is an [OpenClaw](https://docs.openclaw.ai) CLI plugin that provides a structured, research-first, language-aware workflow for backend engineers working in **Python**, **Rust**, **TypeScript** and more languages.
 
 ## Features
 
