@@ -1,5 +1,5 @@
 {
-  "name": "@polyforge/polyforge",
+  "name": "@dvnghiem/polyforge",
   "version": "0.1.0",
   "description": "PolyForge plugin — backend engineering command center for polyglot developers on OpenClaw",
   "type": "module",
@@ -55,7 +55,7 @@
   },
   "devDependencies": {
     "@types/node": "^25.3.0",
-    "typescript": "^5.7.0",
-    "vitest": "^3.0.0"
+    "typescript": "^6.0.2",
+    "vitest": "^4.1.2"
   }
 }
