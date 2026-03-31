@@ -54,7 +54,7 @@
     "json5": "^2.2.3"
   },
   "devDependencies": {
-    "@types/node": "^25.3.0",
+    "@types/node": "^25.5.0",
     "typescript": "^6.0.2",
     "vitest": "^4.1.2"
   }
