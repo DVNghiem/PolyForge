@@ -48,6 +48,10 @@
     "backend",
     "orchestration"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DVNghiem/PolyForge"
+  },
   "license": "MIT",
   "dependencies": {
     "@sinclair/typebox": "^0.34.0",
