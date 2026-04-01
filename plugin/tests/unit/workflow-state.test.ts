@@ -87,11 +87,13 @@ describe('WorkflowStateMachine', () => {
     });
 
     it('sets startedAt to current time', () => {
-      const before = new Date().toISOString();
+      const before = Date.now();
       const state = workflowStateMachine.createInitialState('work', 'session-10', 'Topic');
-      const after = new Date().toISOString();
-      expect(state.startedAt).toBeGreaterThanOrEqual(before);
-      expect(state.startedAt).toBeLessThanOrEqual(after);
+      const after = Date.now();
+      // startedAt is ISO string, convert to timestamp for comparison
+      const startedAtMs = new Date(state.startedAt).getTime();
+      expect(startedAtMs).toBeGreaterThanOrEqual(before);
+      expect(startedAtMs).toBeLessThanOrEqual(after);
     });
 
     it('initializes phaseHistory with entry time', () => {
