@@ -45,14 +45,14 @@ export function registerAutorunCommands(api: PfPluginApi): void {
           `Max iterations: ${maxIter}`,
           taskFile ? `Task file: ${taskFile}` : 'No task file specified',
           ``,
-          `Use \`/stop\` to halt the loop.`,
+          `Use \`/autorun-stop\` to halt the loop.`,
         ].join('\n'),
       };
     },
   });
 
   api.registerCommand({
-    name: 'stop',
+    name: 'autorun-stop',
     description: 'Stop the active autorun loop.',
     handler: async () => {
       const result = await readState<AutorunLoopState>(getStatePath(api));
