@@ -1,6 +1,6 @@
 {
   "name": "@dv.nghiem/polyforge",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "PolyForge plugin — backend engineering command center for polyglot developers on OpenClaw",
   "type": "module",
   "main": "dist/index.js",

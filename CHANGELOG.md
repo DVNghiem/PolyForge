@@ -2,6 +2,17 @@
 
 All notable changes to PolyForge will be documented in this file.
 
+## [0.2.1] - 2026-04-01
+
+### Added
+- Command usage instructions updated for autorun commands
+
+### Changed
+- Renamed `/autorun-stop` command for consistency
+
+### Known Issues
+- **Gateway blocking with `allow` config**: When `plugins.allow` is set in OpenClaw config, the gateway may block during startup. This is an OpenClaw behavior when the `allow` list is configured. Workaround: Run without `plugins.allow` set (gateway works fine without it, plugins auto-load).
+
 ## [0.2.0] - 2026-04-01
 
 ### Added
