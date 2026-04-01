@@ -2,7 +2,26 @@
 
 All notable changes to PolyForge will be documented in this file.
 
-## [0.1.0] - Unreleased
+## [0.2.0] - 2026-04-01
+
+### Added
+- Workflow engine service with phase definitions and state machine
+- Phase transition tool (pf_phase_transition) for controlled workflow progression
+- Phase context injection hook for enriching agent context per phase
+- ACP client for spawning subagents with pf_spawn_subagent tool
+- Approval gate hook for tool interception and workflow control
+- Detached agent monitor hook for tracking spawned agents
+- Intelligent spawn strategy analyzer for optimized agent distribution
+- Proactive suggestion engine for anticipatory guidance
+- Quality evaluator for workflow phase gates
+- Approval learner for adaptive workflow learning
+- Workflow enforcement and intelligent features configuration
+- Integration tests for workflow engine
+
+### Changed
+- Updated initial state tests to use timestamps for accuracy
+
+## [0.1.0] - 2026-03-31
 
 ### Added
 - Initial PolyForge plugin implementation
